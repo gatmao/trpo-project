@@ -23,5 +23,6 @@ from photo_trade.settings import STATIC_URL, STATIC_ROOT
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^admin/', admin.site.urls),
-    url(r'^user/', include('user.urls'))
+    url(r'^user/', include('user.urls')),
+    url(r'^deal/', include('deal.urls'))
 ] + static(STATIC_URL, document_root=STATIC_ROOT)

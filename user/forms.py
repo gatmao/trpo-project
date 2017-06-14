@@ -1,6 +1,6 @@
-from django.contrib.auth.models import User
 from django.forms import ValidationError
 from django import forms
+from .models import CustomUser
 
 
 class RegistrationForm(forms.Form):
@@ -11,13 +11,13 @@ class RegistrationForm(forms.Form):
 
     def clean_username(self):
         username = self.cleaned_data['username']
-        if User.objects.filter(username=username):
+        if CustomUser.objects.filter(username=username):
             raise ValidationError('Это имя уже занято')
         return username
 
     def clean_email(self):
         email = self.cleaned_data['email']
-        if User.objects.filter(email=email):
+        if CustomUser.objects.filter(email=email):
             raise ValidationError('Этот адрес уже используется')
         return email
 
@@ -28,3 +28,7 @@ class RegistrationForm(forms.Form):
             self._errors['confirm_password'] = 'Пароли не совпадают'
             del form_data['password']
         return form_data
+
+
+class PaymentForm(forms.Form):
+    payment = forms.IntegerField(label='Сумма', min_value=30)
