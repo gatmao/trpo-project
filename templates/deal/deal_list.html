@@ -1,0 +1,34 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}
+    <title>Список заказов</title>
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Назвение сделики</th>
+                <th>Покупатель</th>
+                <th>Продавец</th>
+                <th>Описание сделки</th>
+                <th>Цена, руб</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for deal in object_list %}
+                <tr>
+                    <td>{{ deal.deal_name}}</td>
+                    <td>{{ deal.buyer}}</td>
+                    <td>{{ deal.seller}}</td>
+                    <td>{{ deal.description}}</td>
+                    <td>{{ deal.price}}</td>
+                </tr>
+            {% empty %}
+                <tr>Нет сделок.</tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

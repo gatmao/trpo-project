@@ -1,0 +1,21 @@
+.rounded-error-message {
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.card {
+    background-color: #f8f8f8;
+    border-radius: 10px;
+}
+
+.type-container {
+    text-align: center;
+}
+
+.type-btn {
+    width: 100%;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 30px;
+}
