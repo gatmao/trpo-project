@@ -22,6 +22,7 @@ class CreateDealView(FormView):
         else:
             raise ValueError("unknown deal type")
         deal = Deal(deal_name=form.data['deal_name'],
+                    deal_state='pending',
                     description=form.data['description'],
                     buyer=buyer,
                     seller=seller,
