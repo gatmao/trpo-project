@@ -15,17 +15,11 @@ class CreateDealView(FormView):
         deal_type = form.data['deal_type']
         me = self.request.user
         participant = CustomUser.objects.get(username=form.data['participant'])
-        if deal_type == 'sell':
-            buyer, seller = participant, me
-        elif deal_type == 'buy':
-            buyer, seller = me, participant
-        else:
-            raise ValueError("unknown deal type")
         deal = Deal(deal_name=form.data['deal_name'],
-                    deal_state='pending',
                     description=form.data['description'],
-                    buyer=buyer,
-                    seller=seller,
+                    creator=me,
+                    type=form.data['deal_type'],
+                    participant=participant,
                     price=form.data['price'])
         deal.save()
         return super(CreateDealView, self).form_valid(form)
@@ -36,4 +30,9 @@ class ListDealView(ListView):
 
     def get_queryset(self):
         me = self.request.user
-        return Deal.objects.filter(Q(buyer=me) | Q(seller=me))
+        return Deal.objects.filter(Q(creator=me) | Q(participant=me))
+
+    def get_context_data(self, **kwargs):
+        context = super(ListDealView, self).get_context_data(**kwargs)
+        context['me'] = self.request.user
+        return context

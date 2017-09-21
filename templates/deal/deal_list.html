@@ -14,16 +14,20 @@
                 <th>Продавец</th>
                 <th>Описание сделки</th>
                 <th>Цена, руб</th>
+                <th>Состояние</th>
             </tr>
             </thead>
             <tbody>
             {% for deal in object_list %}
                 <tr>
                     <td>{{ deal.deal_name}}</td>
-                    <td>{{ deal.buyer}}</td>
-                    <td>{{ deal.seller}}</td>
+                    <td>{{ deal.creator}}</td>
+                    <td>{{ deal.participant}}</td>
                     <td>{{ deal.description}}</td>
                     <td>{{ deal.price}}</td>
+                    {% if deal.is_pending and deal.participant == me %}
+                        <td><button id="accepted">Подтвердить</button></td>
+                    {% endif %}
                 </tr>
             {% empty %}
                 <tr>Нет сделок.</tr>

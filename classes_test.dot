@@ -1,0 +1,7 @@
+digraph "classes_test" {
+charset="utf-8"
+rankdir=BT
+"0" [label="{deal.models.Deal|DEAL_TYPES : tuple\lcreator : ForeignKey\ldeal_name : TextField\ldeal_state : TextField\ldeal_state_choices : tuple\ldescription : TextField\lis_pending\lparticipant : ForeignKey\lprice : IntegerField\ltype : TextField\l|}", shape="record"];
+"1" [label="{django.db.models.base.Model|pk : property\l|check()\lclean()\lclean_fields()\ldate_error_message()\ldelete()\lfrom_db()\lfull_clean()\lget_deferred_fields()\lprepare_database_save()\lrefresh_from_db()\lsave()\lsave_base()\lserializable_value()\lunique_error_message()\lvalidate_unique()\l}", shape="record"];
+"0" -> "1" [arrowhead="empty", arrowtail="none"];
+}

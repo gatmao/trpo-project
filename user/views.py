@@ -33,6 +33,6 @@ class PaymentView(FormView):
     def form_valid(self, form):
         payment = form.cleaned_data['payment']
         if self.current_user:
-            self.current_user.ballance += payment
+            self.current_user.balance += payment
             self.current_user.save()
         return redirect(self.success_url)
