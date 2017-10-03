@@ -1,3 +1,4 @@
+import os
 from django import forms
 
 from user.models import CustomUser
@@ -9,6 +10,7 @@ class CreateDealForm(forms.Form):
     description = forms.CharField(max_length=200)
     price = forms.FloatField()
     participant = forms.CharField()
+    image = forms.FileField()
 
     def clean_participant(self):
         participant = self.cleaned_data['participant']
@@ -21,3 +23,11 @@ class CreateDealForm(forms.Form):
         if price < 0:
             raise forms.ValidationError("Цена должна быть неотрицательной")
         return price
+
+    def clean_image(self):
+        image = self.cleaned_data['image']
+        ext = os.path.splitext(image.name)[1]
+        valid_extensions = ['.png', '.jpeg']
+        if not ext.lower() in valid_extensions:
+            raise forms.ValidationError("Файл должен быть картинкой")
+        return image

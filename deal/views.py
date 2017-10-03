@@ -20,7 +20,8 @@ class CreateDealView(FormView):
                     creator=me,
                     type=form.data['deal_type'],
                     participant=participant,
-                    price=form.data['price'])
+                    price=form.data['price'],
+                    image=self.request.FILES['image'])
         deal.save()
         return super(CreateDealView, self).form_valid(form)
 

@@ -26,6 +26,7 @@ class Deal(models.Model):
     )
     description = models.TextField(null=True)
     price = models.IntegerField(null=True)
+    image = models.FileField(upload_to='images/%Y/%m/%d', null=True)
 
     @property
     def is_pending(self):
